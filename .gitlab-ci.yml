@@ -1,6 +1,7 @@
 stages:
   - build
   - style
+  - test
 
 build-job:
   stage: build
@@ -27,3 +28,18 @@ style-job:
     - clang-format -n --style=Google cat/*.c cat/*.h grep/*.c grep/*.h
     - clang-format -i --style=Google cat/*.c cat/*.h grep/*.c grep/*.h
     - git diff --exit-code
+
+test-job:
+  stage: test
+  tags:
+    - test
+
+  script:
+    - cd src
+    - chmod +x cat/diffcat.sh grep/diffgrep.sh
+
+    - cat/diffcat.sh | tee cat/cat-test.txt
+    - grep/diffgrep.sh | tee grep/grep-test.txt
+
+    - if grep -q differ cat/cat-test.txt; then exit 1; fi
+    - if grep -q differ grep/grep-test.txt; then exit 1; fi
