@@ -1,5 +1,6 @@
 stages:
   - build
+  - style
 
 build-job:
   stage: build
@@ -16,3 +17,13 @@ build-job:
       - src/grep/s21_grep
     expire_in: "30 days"
 
+style-job:
+  stage: style
+  tags:
+    - style
+
+  script:
+    - cd src/cat
+    - clang-format -n --style=Google *.c *.h
+    - cd ../grep
+    - clang-format -n --style=Google *.c *.h
