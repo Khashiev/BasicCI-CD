@@ -24,6 +24,7 @@ style-job:
 
   script:
     - cd src/cat
-    - clang-format -n --style=Google *.c *.h
+    - clang-format -n --style=Google *.c *.h >> ../style_res.txt
     - cd ../grep
-    - clang-format -n --style=Google *.c *.h
+    - clang-format -n --style=Google *.c *.h >> ../style_res.txt
+    - if [ -s ../style_res.txt ]; then exit 1; fi
