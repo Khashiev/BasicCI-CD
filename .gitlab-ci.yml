@@ -35,7 +35,12 @@ test-job:
     - test
 
   script:
-    - cd src
+    - cd src/cat
+    - make s21_cat
+    - cd ../grep
+    - make s21_grep
+
+    - cd ..
     - chmod +x cat/diffcat.sh grep/diffgrep.sh
 
     - cat/diffcat.sh | tee cat/cat-test.txt
