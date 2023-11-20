@@ -23,8 +23,7 @@ style-job:
     - style
 
   script:
-    - cd src/cat
-    - clang-format -n --style=Google *.c *.h >> ../style_res.txt
-    - cd ../grep
-    - clang-format -n --style=Google *.c *.h >> ../style_res.txt
-    - if [ -s ../style_res.txt ]; then exit 1; fi
+    - cd src
+    - clang-format -n --style=Google cat/*.c cat/*.h grep/*.c grep/*.h
+    - clang-format -i --style=Google cat/*.c cat/*.h grep/*.c grep/*.h
+    - git diff --exit-code
