@@ -35,16 +35,20 @@ test-job:
     - test
 
   script:
-    - cd src/cat
-    - make s21_cat
-    - cd ../grep
-    - make s21_grep
+    # - cd src/cat
+    # - make s21_cat
+    # - cd ../grep
+    # - make s21_grep
 
-    - cd ..
+    - cd src
     - chmod +x cat/diffcat.sh grep/diffgrep.sh
 
-    - cat/diffcat.sh | tee cat/cat-test.txt
-    - grep/diffgrep.sh | tee grep/grep-test.txt
+    - cd cat
+    - ./diffcat.sh | tee cat-test.txt
 
+    - cd ../grep
+    - ./diffgrep.sh | tee grep-test.txt
+
+    - cd ..
     - if grep -q differ cat/cat-test.txt; then exit 1; fi
     - if grep -q differ grep/grep-test.txt; then exit 1; fi
