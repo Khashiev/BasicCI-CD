@@ -2,6 +2,7 @@ stages:
   - build
   - style
   - test
+  - deploy
 
 build-job:
   stage: build
@@ -45,3 +46,12 @@ test-job:
     - cd ..
     - if grep -q differ cat/cat-test.txt; then exit 1; fi
     - if grep -q differ grep/grep-test.txt; then exit 1; fi
+
+deploy-prod:
+  stage: deploy
+  tags:
+    - deploy
+  script:
+    - chmod +x src/copy.sh
+    - bash src/copy.sh
+  when: manual
