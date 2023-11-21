@@ -1,5 +1,7 @@
 #include "cat.h"
 
+
+
 int main(int argc, char *argv[]) {
   Flag flags = {0};
 
