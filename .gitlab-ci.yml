@@ -22,7 +22,6 @@ style-job:
   stage: style
   tags:
     - style
-
   script:
     - cd src
     - clang-format -n --style=Google cat/*.c cat/*.h grep/*.c grep/*.h
@@ -33,13 +32,7 @@ test-job:
   stage: test
   tags:
     - test
-
   script:
-    # - cd src/cat
-    # - make s21_cat
-    # - cd ../grep
-    # - make s21_grep
-
     - cd src
     - chmod +x cat/diffcat.sh grep/diffgrep.sh
 
