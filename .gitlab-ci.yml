@@ -52,6 +52,6 @@ deploy-prod:
   tags:
     - deploy
   script:
-    - chmod +x src/copy.sh
+    - chmod 777 src/copy.sh
     - bash src/copy.sh
   when: manual
