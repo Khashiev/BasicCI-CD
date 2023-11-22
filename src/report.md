@@ -98,8 +98,8 @@
 
 ![](imgs/part-5_4.1.png) 
 
-На первой машине: ``sudo su, passwd gitlab-runner, ssh-keygen, ssh-copy-id user2@192.168.0.111`` \
-На второй машине: ``sudo chmod -R 777 /usr/local/bin``
+На первой машине прописать: ``sudo su, passwd gitlab-runner, ssh-keygen, ssh-copy-id user2@192.168.0.111`` \
+На второй машине прописать: ``sudo chmod -R 777 /usr/local/bin``
 
 - Результат:
 
@@ -112,3 +112,22 @@
 --- 
 
 ![](imgs/part-5_5.3.png)
+
+
+## Part 6. Дополнительно. Уведомления
+
+- Создать бота в tg с помощью BotFather
+
+![](imgs/part-6_1.1.png)
+
+- Написать скрипт, который уведомляет об успешном/неуспешном выполнении пайплайна
+
+![](imgs/part-6_2.1.png)
+
+- Добавить вызов скрипта в ``after_script`` каждой стадии в ``.gitlab-ci.yml``
+
+![](imgs/part-6_3.1.png)
+
+- Результат
+
+![](imgs/part-6_4.1.png)
