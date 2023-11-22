@@ -13,6 +13,8 @@ build-job:
     - make s21_cat
     - cd ../grep
     - make s21_grep
+  after_script:
+    - bash src/tg.sh
   artifacts:
     paths:
       - src/cat/s21_cat
@@ -28,6 +30,8 @@ style-job:
     - clang-format -n --style=Google cat/*.c cat/*.h grep/*.c grep/*.h
     - clang-format -i --style=Google cat/*.c cat/*.h grep/*.c grep/*.h
     - git diff --exit-code
+  after_script:
+    - bash src/tg.sh
 
 test-job:
   stage: test
@@ -46,6 +50,8 @@ test-job:
     - cd ..
     - if grep -q differ cat/cat-test.txt; then exit 1; fi
     - if grep -q differ grep/grep-test.txt; then exit 1; fi
+  after_script:
+    - bash src/tg.sh
 
 deploy-prod:
   stage: deploy
@@ -54,4 +60,6 @@ deploy-prod:
   script:
     - chmod 777 src/copy.sh
     - bash src/copy.sh
+  after_script:
+    - bash src/tg.sh
   when: manual
